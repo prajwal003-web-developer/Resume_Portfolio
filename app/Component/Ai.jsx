@@ -5,6 +5,7 @@ import useData from "../Stores/Data";
 import { useAiStore } from "../Stores/AiStore";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdOutlineClear, MdSend } from "react-icons/md";
+import { usePhoneStroe } from "../Stores/PhoneStore";
 
 const Ai = () => {
   const theme = useData((s) => s.theme);
@@ -12,6 +13,8 @@ const Ai = () => {
   const messages = useAiStore((s) => s.Messages);
   const setMessages = useAiStore((s) => s.setMessages);
   const isOpen = useAiStore((s) => s.isOpen);
+
+   const isMobileOpen = usePhoneStroe((s) => s.isPhoneOpen);
   const setIsOpen = useAiStore((s) => s.setIsOpen);
 
   const [input, setInput] = useState("");
@@ -32,6 +35,8 @@ const Ai = () => {
     setMessages({ sender: "user", text: input });
     setInput("");
   };
+
+  if(isMobileOpen) return
 
   return (
     <>

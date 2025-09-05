@@ -8,6 +8,7 @@ import { usePhoneStroe } from "../Stores/PhoneStore";
 import MobHome from "./MobHome";
 import MobNav from "./MobNav";
 import MobDialPad from "./MobDialPad";
+import { useAiStore } from "../Stores/AiStore";
 
 const Mobile = () => {
     const theme = useData((s) => s.theme);
@@ -22,9 +23,11 @@ const Mobile = () => {
     const setIsCallOpen = usePhoneStroe((s) => s.setIsCallOpen);
     const setIsNavbarOpen = usePhoneStroe((s) => s.setIsNavbarOpen);
 
+     const isAiOpen = useAiStore((s) => s.isOpen);
 
 
 
+    if(isAiOpen) return
 
     return (
         <>
