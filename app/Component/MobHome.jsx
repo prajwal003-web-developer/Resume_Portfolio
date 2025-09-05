@@ -92,9 +92,9 @@ const MobHome = () => {
                 ) : (
                     <motion.div
                         key="other"
-                        initial={{ x: 400, opacity: 0 }}
+                        initial={{ x: 100, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
-                        exit={{ x: 400, opacity: 0 }}
+                        exit={{ x: 200, opacity: 0 }}
                         transition={{ duration: 0.5 }}
                         className="flex-1 flex flex-col justify-center items-center w-full px-4"
                     >

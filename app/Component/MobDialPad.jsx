@@ -31,11 +31,7 @@ export default function MobDialPad() {
 
   const backspace = () => setNumber((s) => s.slice(0, -1));
 
-  const fakeCall = () => {
-    // demo behaviour only
-    if (!number) return;
-    alert(`Calling ${number} (demo)`);
-  };
+
 
 
   const data = useData((s)=>s.data)
@@ -104,7 +100,6 @@ export default function MobDialPad() {
           <motion.a
             href={`tel:+${data?.Information?.contact}`}
             whileTap={{ scale: 0.98 }}
-            onClick={fakeCall}
             type="button"
             aria-label="Call"
             className="flex-1 flex items-center justify-center gap-2 py-3 rounded-lg bg-green-500 text-white hover:bg-green-600 transition"
