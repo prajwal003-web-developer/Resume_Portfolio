@@ -47,7 +47,7 @@ const Side = () => {
         >
             {/* icons container */}
             <motion.div
-                className="justify-center items-center w-full h-full flex-col gap-4 hidden group-hover:flex"
+                className="justify-center items-center w-full h-full flex-col gap-4 hidden group-hover:flex delay-700"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, transition: { duration: 0.3, delay: 0.8 } }}
             >
