@@ -23,26 +23,31 @@ export default function MobDialPad() {
 
 
   // Prevent keyboard input / paste on the display input
- 
 
-  const onPress = (val) => {
-    setNumber((s) => (s + val).slice(0, 25)); // cap length
-  };
+
 
   const backspace = () => setNumber((s) => s.slice(0, -1));
 
 
 
 
-  const data = useData((s)=>s.data)
+  const data = useData((s) => s.data)
 
-    const [number, setNumber] = useState(data.Information.contact);
+  const [number, setNumber] = useState(data.Information.contact);
+
+
+  const onPress = (val) => {
+    if (number.length > 16) {
+      return
+    }
+    setNumber((s) => (s + val).slice(0, 25)); // cap length
+  };
 
   return (
     <div className="p-2 ">
       {/* Display / Header */}
       <div
-        className="rounded-2xl p-4 mb-4 shadow-lg flex-1 text-center text-xl h-16"
+        className="rounded-2xl p-4 mb-4 shadow-lg flex-1 text-center text-xl h-16 overflow-clip"
         style={{
           background:
             "linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))",
