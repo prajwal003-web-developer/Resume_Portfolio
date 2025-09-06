@@ -85,7 +85,7 @@ const MobHome = () => {
                         className="flex-1 flex justify-center items-center"
                     >
                         <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl shadow-xl p-6 flex flex-col items-center space-y-2">
-                            <h1 className="text-5xl font-bold tracking-wide drop-shadow-lg">{timeData.time}</h1>
+                            <h1 className="text-3xl md:text-4xl font-bold tracking-wide drop-shadow-lg">{timeData.time}</h1>
                             <p className="text-lg font-medium text-gray-200 drop-shadow-md">{timeData.date}</p>
                         </div>
                     </motion.div>
