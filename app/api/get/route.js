@@ -31,7 +31,7 @@ Portfolio data:
 ${JSON.stringify(data)}
 
 Question: ${question}
-Answer briefly.
+Answer briefly & dont Send Image Links its Prohibited.
 `;
 
         const response = await ai.models.generateContent({

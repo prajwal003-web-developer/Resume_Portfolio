@@ -8,6 +8,7 @@ import { MdOutlineClear, MdSend } from "react-icons/md";
 import { usePhoneStroe } from "../Stores/PhoneStore";
 import ReactMarkdown from "react-markdown";
 
+
 const Ai = () => {
   const theme = useData((s) => s.theme);
 
@@ -15,7 +16,7 @@ const Ai = () => {
   const setMessages = useAiStore((s) => s.setMessages);
   const isOpen = useAiStore((s) => s.isOpen);
 
-   const isMobileOpen = usePhoneStroe((s) => s.isPhoneOpen);
+  const isMobileOpen = usePhoneStroe((s) => s.isPhoneOpen);
   const setIsOpen = useAiStore((s) => s.setIsOpen);
 
   const [input, setInput] = useState("");
@@ -24,16 +25,16 @@ const Ai = () => {
 
   const messageBox = useRef()
 
-  useEffect(()=>{
+  useEffect(() => {
     const el = messageBox.current
 
     if (el) {
-    el.scrollTop = el.scrollHeight;
-  }
-  },[messages,isOpen])
+      el.scrollTop = el.scrollHeight;
+    }
+  }, [messages, isOpen])
 
   const handleSend = async (e) => {
-    if(Loading){
+    if (Loading) {
       return
     }
     e.preventDefault();
@@ -50,16 +51,16 @@ const Ai = () => {
 
       const ai = data.answer
 
-      setMessages({sender:'Ai',text:ai})
+      setMessages({ sender: 'Ai', text: ai })
     } catch (error) {
       console.log(error)
-    }finally{
+    } finally {
       setLoading(false)
     }
-  
+
   };
 
-  if(isMobileOpen) return
+  if (isMobileOpen) return
 
   return (
     <>
@@ -105,15 +106,14 @@ const Ai = () => {
                 messages.map((msg, i) => (
                   <div
                     key={i}
-                    className={`p-2 my-1 rounded ${
-                      msg.sender === "user"
-                        ? "bg-gray-700 text-white self-end"
-                        : "bg-gray-400 text-black self-start"
-                    }`}
+                    className={`p-2 my-1 text-wrap overflow-clip rounded ${msg.sender === "user"
+                      ? "bg-gray-700 text-white self-end"
+                      : "bg-gray-400 text-black self-start"
+                      }`}
                   >
-                   <ReactMarkdown>
-                     {msg.text}
-                   </ReactMarkdown>
+                    <ReactMarkdown>
+                      {msg.text}
+                    </ReactMarkdown>
                   </div>
                 ))
               )}
@@ -144,39 +144,38 @@ const Ai = () => {
           </motion.div>
         )}
       </AnimatePresence>
-  <AnimatePresence>
-      {/* Floating Button */}
-      {!isOpen && (
-      
-        <motion.button
-        key={"ChatButton"}
-        initial={{
-            opacity:0,
-            scale:0
-        }}
+      <AnimatePresence>
+        {/* Floating Button */}
+        {!isOpen && (
 
-        animate={{
-            opacity:1,
-            scale:1
-        }}
-        exit={{
-            opacity:[1,0],
-            scale:[1,0]
-        }}
-         transition={{
-            duration:.9
-         }}
-          onClick={() => setIsOpen(true)}
-          className={`fixed bottom-6 right-8 z-30 h-11 w-11 rounded-full cursor-pointer shadow flex justify-center items-center active:shadow-none ${
-            theme === "light"
+          <motion.button
+            key={"ChatButton"}
+            initial={{
+              opacity: 0,
+              scale: 0
+            }}
+
+            animate={{
+              opacity: 1,
+              scale: 1
+            }}
+            exit={{
+              opacity: [1, 0],
+              scale: [1, 0]
+            }}
+            transition={{
+              duration: .9
+            }}
+            onClick={() => setIsOpen(true)}
+            className={`fixed bottom-6 right-8 z-30 h-11 w-11 rounded-full cursor-pointer shadow flex justify-center items-center active:shadow-none ${theme === "light"
               ? "bg-gray-300 shadow-gray-500"
               : "bg-[#2c2b2bfc] shadow-gray-100"
-          }`}
-        >
-          <img src="/ChatBot.png" alt="Error" className="h-10 w-10" />
-        </motion.button>
-        
-      )}
+              }`}
+          >
+            <img src="/ChatBot.png" alt="Error" className="h-10 w-10" />
+          </motion.button>
+
+        )}
       </AnimatePresence>
     </>
   );
