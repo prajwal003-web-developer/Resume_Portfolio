@@ -91,7 +91,7 @@ export default function RootLayout({ children }) {
       >
         <Wrapper>
           <Navbar/>
-            <div className="py-24">
+            <div className="">
               {children}
             </div>
         </Wrapper>

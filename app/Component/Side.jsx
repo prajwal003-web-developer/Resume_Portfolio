@@ -49,7 +49,7 @@ const Side = () => {
         hover:top-[30%] transition-discrete duration-700 
         z-30
         hover:h-72 hover:w-[7rem] shadow 
-        ${isDark ? "bg-[#272525] shadow-gray-900" : "bg-gray-300"}  
+        ${isDark ? "bg-[#272525] shadow-gray-950" : "bg-gray-300"}  
         rounded-xl overflow-hidden`}
             >
                 {/* icons container */}
