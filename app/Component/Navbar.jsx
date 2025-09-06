@@ -7,6 +7,7 @@ import Link from "next/link";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { usePhoneStroe } from "../Stores/PhoneStore";
 import { CgMenuGridO } from "react-icons/cg";
+import { useAiStore } from "../Stores/AiStore";
 
 const navLinks = [
   { id: "home", label: "Home" },
@@ -26,6 +27,8 @@ const Navbar = () => {
   const setIsOpen = usePhoneStroe((s) => s.setIsPhoneOpen);
   const setIsCallOpen = usePhoneStroe((s) => s.setIsCallOpen);
   const setIsNavbarOpen = usePhoneStroe((s) => s.setIsNavbarOpen);
+
+  const setIsAiOpen  = useAiStore(s=>s.setIsOpen)
 
   useEffect(() => {
     const sections = document.querySelectorAll("section");
@@ -110,6 +113,7 @@ const Navbar = () => {
           }}
           onClick={() => {
             setIsOpen(true)
+            setIsAiOpen(false)
             setIsCallOpen(false)
             setIsNavbarOpen(true)
           }} className="md:hidden block ">
