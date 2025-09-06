@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa";
 import { FaFilePdf } from "react-icons/fa6";
 import { usePhoneStroe } from "../Stores/PhoneStore";
+import { useAiStore } from "../Stores/AiStore";
 
 
 
@@ -37,6 +38,7 @@ const Side = () => {
     const ClosePhone = usePhoneStroe(s=>s.ClosePhone)
     const setIsPhoneOpen = usePhoneStroe(s=>s.setIsPhoneOpen)
     const setIsHomePage = usePhoneStroe(s=>s.setIsHomePage)
+    const setIsAiOpen  = useAiStore(s=>s.setIsOpen)
 
     return (
         <>
@@ -95,6 +97,7 @@ const Side = () => {
             <motion.div
                 onClick={()=>{
                     ClosePhone()
+                    setIsAiOpen(false)
                     setIsPhoneOpen(true)
                     setIsHomePage(false)
                 }}
