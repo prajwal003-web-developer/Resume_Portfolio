@@ -6,6 +6,7 @@ import { useAiStore } from "../Stores/AiStore";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdOutlineClear, MdSend } from "react-icons/md";
 import { usePhoneStroe } from "../Stores/PhoneStore";
+import ReactMarkdown from "react-markdown";
 
 const Ai = () => {
   const theme = useData((s) => s.theme);
@@ -19,6 +20,8 @@ const Ai = () => {
 
   const [input, setInput] = useState("");
 
+  const [Loading, setLoading] = useState(false)
+
   const messageBox = useRef()
 
   useEffect(()=>{
@@ -30,11 +33,19 @@ const Ai = () => {
   },[messages,isOpen])
 
   const handleSend = async (e) => {
+    if(Loading){
+      return
+    }
     e.preventDefault();
     if (!input.trim()) return;
     setMessages({ sender: "user", text: input });
     try {
-      const res = await fetch(`/api/get?question=${input}`)
+      setLoading(true)
+      let mes = input
+      setInput("");
+      const res = await fetch(`/api/get?question=${mes}`)
+
+      setInput("");
       const data = await res.json()
 
       const ai = data.answer
@@ -43,9 +54,9 @@ const Ai = () => {
     } catch (error) {
       console.log(error)
     }finally{
-
+      setLoading(false)
     }
-    setInput("");
+  
   };
 
   if(isMobileOpen) return
@@ -100,10 +111,18 @@ const Ai = () => {
                         : "bg-gray-400 text-black self-start"
                     }`}
                   >
-                    {msg.text}
+                   <ReactMarkdown>
+                     {msg.text}
+                   </ReactMarkdown>
                   </div>
                 ))
               )}
+              {
+                Loading &&
+                <div className="text-sm font-semibold">
+                  Typing...
+                </div>
+              }
             </div>
 
             {/* Input */}
