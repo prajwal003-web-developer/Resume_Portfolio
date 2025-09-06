@@ -54,7 +54,7 @@ const Wrapper = ({ children }) => {
 
     if (Loading || !IsAnimated) return <LoadingComponent />
     return (
-        <div className={`min-h-[100dvh] ${theme=='light'?'bg-white text-black':'bg-black text-white'} transition-colors duration-500 `}>
+        <div className={`min-h-[100dvh] max-w-[100vw] overflow-clip ${theme=='light'?'bg-white text-black':'bg-black text-white'} transition-colors duration-500 `}>
             <Side/>
             <Ai/>
             <Mobile/>

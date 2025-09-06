@@ -29,10 +29,22 @@ const Ai = () => {
   }
   },[messages,isOpen])
 
-  const handleSend = (e) => {
+  const handleSend = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
     setMessages({ sender: "user", text: input });
+    try {
+      const res = await fetch(`/api/get?question=${input}`)
+      const data = await res.json()
+
+      const ai = data.answer
+
+      setMessages({sender:'Ai',text:ai})
+    } catch (error) {
+      console.log(error)
+    }finally{
+
+    }
     setInput("");
   };
 
