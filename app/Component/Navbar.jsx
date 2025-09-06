@@ -49,6 +49,10 @@ const Navbar = () => {
   const isDark = theme === "dark";
   const name = "PRAJWAL.DEV";
 
+  const ClosePhone = usePhoneStroe(s=>s.ClosePhone)
+
+  const isNavOpen = usePhoneStroe(s=>s.isNavbarOpen)
+
   const navLinks = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
@@ -135,11 +139,17 @@ const Navbar = () => {
             },
           }}
           onClick={() => {
+           if(!isNavOpen){
             setIsOpen(true);
             setIsAiOpen(false);
             setIsCallOpen(false);
             setIsNavbarOpen(true);
-          }}
+          }else{
+            ClosePhone()
+          }
+          }
+          
+        }
           className={ `md:hidden block ${scrolled?"":"text-white"}`}
         >
           <CgMenuGridO size={"1.5rem"} />

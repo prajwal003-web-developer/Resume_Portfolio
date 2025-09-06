@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import useData from "../Stores/Data";
 import Link from "next/link";
+import { usePhoneStroe } from "../Stores/PhoneStore";
 
 const navLinks = [
   { id: "home", label: "Home" },
@@ -16,6 +17,8 @@ const navLinks = [
 const MobNav = () => {
   const theme = useData((s) => s.theme);
   const [activeSection, setActiveSection] = useState("home");
+
+  const ClosePhone = usePhoneStroe(s=>s.ClosePhone)
 
   // Intersection Observer to detect active section
   useEffect(() => {
@@ -54,6 +57,9 @@ const MobNav = () => {
         >
           <Link
             href={`#${itm.id}`}
+            onClick={()=>{
+              ClosePhone()
+            }}
             className={`block px-3 py-2 rounded-md font-medium text-lg transition-all duration-300 mx-3 ${
               activeSection === itm.id
                 ? theme === "dark"
